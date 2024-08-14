@@ -55,8 +55,6 @@ const io = new Server(server, {
   },
 });
 
-console.log([...corsOptions?.origin, process.env.CLIENT_URL]);
-
 app.set("io", io);
 
 // Using Middlewares Here
