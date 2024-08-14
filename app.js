@@ -49,11 +49,13 @@ const app = express();
 const server = createServer(app);
 const io = new Server(server, {
   cors: {
-    origin: corsOptions?.origin,
+    origin: [...corsOptions?.origin, process.env.CLIENT_URL],
     methods: corsOptions?.methods,
     credentials: corsOptions?.credentials,
   },
 });
+
+console.log([...corsOptions?.origin, process.env.CLIENT_URL]);
 
 app.set("io", io);
 
