@@ -60,7 +60,13 @@ app.set("io", io);
 // Using Middlewares Here
 app.use(express.json());
 app.use(cookieParser());
-app.use(cors(corsOptions));
+app.use(
+  cors({
+    origin: [...corsOptions?.origin, process.env.CLIENT_URL],
+    methods: corsOptions?.methods,
+    credentials: corsOptions?.credentials,
+  })
+);
 
 app.use("/api/v1/user", userRoute);
 app.use("/api/v1/chat", chatRoute);
