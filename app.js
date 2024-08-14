@@ -48,7 +48,11 @@ cloudinary.config({
 const app = express();
 const server = createServer(app);
 const io = new Server(server, {
-  cors: corsOptions,
+  cors: {
+    origin: corsOptions?.origin,
+    methods: corsOptions?.methods,
+    credentials: corsOptions?.credentials,
+  },
 });
 
 app.set("io", io);
