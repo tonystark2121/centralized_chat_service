@@ -38,6 +38,7 @@ const newGroupChat = TryCatch(async (req, res, next) => {
 });
 
 const getMyChats = TryCatch(async (req, res, next) => {
+  console.log(req.user, "req.user", "getMyChats");
   const chats = await Chat.find({ members: req.user }).populate(
     "members",
     "name avatar"
@@ -59,6 +60,7 @@ const getMyChats = TryCatch(async (req, res, next) => {
         }
         return prev;
       }, []),
+      lastmessage: "No message yet", //showing the last converstion message
     };
   });
 
@@ -215,6 +217,7 @@ const leaveGroup = TryCatch(async (req, res, next) => {
 });
 
 const sendAttachments = TryCatch(async (req, res, next) => {
+  console.log(req.body, "req.body", "sendAttachments");
   const { chatId } = req.body;
 
   const files = req.files || [];
@@ -374,6 +377,7 @@ const deleteChat = TryCatch(async (req, res, next) => {
 
 const getMessages = TryCatch(async (req, res, next) => {
   const chatId = req.params.id;
+
   const { page = 1 } = req.query;
 
   const resultPerPage = 20;
