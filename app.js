@@ -25,6 +25,8 @@ import { socketAuthenticator } from "./middlewares/auth.js";
 import userRoute from "./routes/user.js";
 import chatRoute from "./routes/chat.js";
 import adminRoute from "./routes/admin.js";
+import productRoute from "./routes/product.routes.js";
+import morgan from "morgan";
 
 dotenv.config({
   path: "./.env",
@@ -67,13 +69,15 @@ app.use(
     credentials: corsOptions?.credentials,
   })
 );
+app.use(morgan("dev"));
 
 app.use("/api/v1/user", userRoute);
 app.use("/api/v1/chat", chatRoute);
 app.use("/api/v1/admin", adminRoute);
+app.use("/api/v1/product", productRoute);
 
 app.get("/", (req, res) => {
-  res.send("Hello World");
+  res.send("Welcome To Chatapp Server!");
 });
 
 io.use((socket, next) => {

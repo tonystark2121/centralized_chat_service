@@ -13,7 +13,7 @@ const cookieOptions = {
 
 const connectDB = async (uri) => {
   await mongoose
-    .connect(uri, { dbName: "Chattu" })
+    .connect(uri, { dbName: "CentralisedChats" })
     .then((data) => console.log(`Connected to DB: ${data.connection.host}`))
     .catch((err) => {
       throw err;
