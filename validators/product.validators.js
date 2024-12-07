@@ -7,4 +7,15 @@ const CreateNewProductSV = Joi.object({
   appDescription: Joi.string().required(),
 });
 
-export default CreateNewProductSV;
+const UpdateProductSV = Joi.object({
+  productDocId: Joi.string().hex().length(24).required().messages({
+    "string.length": "productDocId is invalid",
+    "string.hex": "productDocId is invalid",
+  }),
+  productName: Joi.string(),
+  appType: Joi.string(),
+  appStatus: Joi.string(),
+  appDescription: Joi.string(),
+});
+
+export { CreateNewProductSV, UpdateProductSV };

@@ -18,13 +18,8 @@ import {
   STOP_TYPING,
 } from "./constants/events.js";
 import { getSockets } from "./lib/helper.js";
-import { Message } from "./models/message.js";
 import { corsOptions } from "./constants/config.js";
 import { socketAuthenticator } from "./middlewares/auth.js";
-
-import userRoute from "./routes/user.js";
-import chatRoute from "./routes/chat.js";
-import adminRoute from "./routes/admin.js";
 import productRoute from "./routes/product.routes.js";
 import morgan from "morgan";
 
@@ -71,9 +66,6 @@ app.use(
 );
 app.use(morgan("dev"));
 
-app.use("/api/v1/user", userRoute);
-app.use("/api/v1/chat", chatRoute);
-app.use("/api/v1/admin", adminRoute);
 app.use("/api/v1/product", productRoute);
 
 app.get("/", (req, res) => {
